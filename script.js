@@ -1,27 +1,29 @@
 // Assignment code here
 
+//List of variables
 // Clear console after refresh
 // console.clear();
-//Get references to the #generate element
+
 var generateBtn = document.querySelector("#generate");
-
-// List of variables
-
 var passwordLength;
 var lowerCase;
 var upperCase;
 var specialCharacters;
-var uppercaseCharacters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-var lowercaseCharacters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-var specialCharacters = ['@', '%', '+', '\\', '/', "'", '!', '#', '$', '^', '?', ':', ',', ')', '(', '}', '{', ']', '[', '~', '-', '_', '.'];
-var lowercaseCharacters = lowercaseCharacters.length;
-var uppercaseCharacters = uppercaseCharacters.length;  
-let passwordSource = [];
-let randCharacters = "";
-let finalPassword = "";  
+var uppercaseCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var lowercaseCharacters = "abcdefghijklmnopqrstuvwxyz";
+var lowercaseCharactersLength = lowercaseCharacters.length;
+var uppercaseCharactersLength = uppercaseCharacters.length;  
+var numericCharacters = "1234567890";
+var specialCharacters = "!@#$%^&*()_";
+var passwordSource = "";
+var randomCharacters = "";
+var finalPassword = "";  
+
 
   // Asking the user to choose a password between 8 - 128 character length
+  function generatePassword() {
+passwordSource = "";
+finalPassword = "";
 passwordLength = prompt("How many characters would you like in the password (Must be a number between 8-128)");
   while (passwordLength < 8 || passwordLength >128){
     alert ("Must be a number between 8-128")
@@ -73,6 +75,16 @@ passwordLength = prompt("How many characters would you like in the password (Mus
     console.log(passwordSource + "false")
   }
 
+  for (var i = 0; i < passwordLength; i++) {
+    var randCharacters = passwordSource.charAt(Math.floor(Math.random() * passwordSource.length));
+    finalPassword += randCharacters;
+  }
+
+  return finalPassword;
+  
+  console.log(finalPassword);
+  }
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -84,3 +96,4 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
